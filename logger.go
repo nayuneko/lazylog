@@ -173,5 +173,5 @@ func Tracef(format string, v ...interface{}) {
 
 func writeln(w io.Writer, loglevel Loglevel, message string) {
 	datetime := time.Now().Format("2006/1/2 15:04:05")
-	fmt.Fprintln(w, fmt.Sprintf("%s %s %s", datetime, loglevel.String(), message))
+	fmt.Fprintln(w, datetime, loglevel.String(), message)
 }
