@@ -1,6 +1,6 @@
 # Lazy logger
 
-## 究極に面倒くさい人のためのロガー
+### 究極に面倒くさい人のためのGo言語用ロガー
 
 - fmt.Print*ぐらいの温度感で使いたいけどログ日時は出力したい
 - エラーログは標準エラーで出力したい
@@ -18,9 +18,14 @@
       lazylog.Infof("logging end: count: %d", 10) // "YYYY/MM/DD HH:ii:ss I logging end: count: 10"
 
       // ログレベルで制御する
-      logger := lazylog.NewInfo() // lazylog.New({loglevel: lazylog.loglevelInfo})でもOK!
+      logger := lazylog.NewInfo() // alias: lazylog.New({loglevel: lazylog.loglevelInfo})
       logger.Error("errorlog") // "YYYY/MM/DD HH:ii:ss E errorlog"
       logger.Info("infolog")   // "YYYY/MM/DD HH:ii:ss I infolog"
+      logger.Debug("debuglog") // 出力なし
+
+      loggerFatal := lazylog.NewFatal() // alias: lazylog.New({loglevel: lazylog.loglevelFatal})
+      logger.Error("errorlog") // 出力なし
+      logger.Info("infolog")   // 出力なし
       logger.Debug("debuglog") // 出力なし
 
     }
@@ -31,8 +36,10 @@
 
 | ログレベル | 概要 | ログ出力先 | 呼び出し後の動作 |
 |:-:|:-:|:-:|:-:|
-|loglevelFatal|致命的エラー|os.Stderr|os.Exit(1)を呼び出し終了|
-|loglevelError|エラー|os.Stderr|特になし|
-|loglevelInfo|情報|os.Stdout|特になし|
-|loglevelDebug|デバッグ情報|os.Stdout|特になし|
-|loglevelTrace|トレース情報|os.Stdout|特になし|
+|Fatal|致命的エラー|os.Stderr|os.Exit(1)を呼び出し終了|
+|Error|エラー|os.Stderr|特になし|
+|Info|情報|os.Stdout|特になし|
+|Debug|デバッグ情報|os.Stdout|特になし|
+|Trace|トレース情報|os.Stdout|特になし|
+
+NewXXXでロガーのインスタンスを生成した場合は指定したログレベル以上のログのみ出力されます。
