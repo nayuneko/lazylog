@@ -8,6 +8,10 @@
 - ログレベルで出し分けしたい
 - fmt.Printfで改行コードを入れるのが面倒くさい
 
+# Installation
+
+    go get github.com/nayuneko/lazylog
+
 # Usage
 
     import "github.com/nayuneko/lazylog"
