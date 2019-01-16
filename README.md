@@ -23,12 +23,12 @@
       lazylog.Infof("logging end: count: %d", 10) // "YYYY/MM/DD HH:ii:ss I logging end: count: 10"
 
       // ログレベルで制御する
-      logger := lazylog.NewInfo() // alias: lazylog.New({loglevel: lazylog.loglevelInfo})
+      logger := lazylog.NewInfo() // alias: lazylog.New({loglevel: lazylog.LoglevelInfo})
       logger.Error("errorlog") // "YYYY/MM/DD HH:ii:ss E errorlog"
       logger.Info("infolog")   // "YYYY/MM/DD HH:ii:ss I infolog"
       logger.Debug("debuglog") // 出力なし
 
-      loggerFatal := lazylog.NewFatal() // alias: lazylog.New({loglevel: lazylog.loglevelFatal})
+      loggerFatal := lazylog.NewFatal() // alias: lazylog.New({loglevel: lazylog.LoglevelFatal})
       logger.Error("errorlog") // 出力なし
       logger.Info("infolog")   // 出力なし
       logger.Debug("debuglog") // 出力なし

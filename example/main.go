@@ -13,7 +13,7 @@ func main() {
 	//lazylog.Fatal("fatal")           // "YYYY/MM/DD HH:ii:ss E fatal"
 
 	// ログレベルで制御する
-	logger := lazylog.NewInfo() // lazylog.New({loglevel: lazylog.loglevelInfo})でもOK!
+	logger := lazylog.NewInfo() // lazylog.New({loglevel: lazylog.LoglevelInfo})でもOK!
 	logger.Error("errorlog")    // "YYYY/MM/DD HH:ii:ss E errorlog"
 	logger.Info("infolog")      // "YYYY/MM/DD HH:ii:ss I infolog"
 	logger.Debug("debuglog")    // 出力なし

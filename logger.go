@@ -11,24 +11,24 @@ import (
 type Loglevel int
 
 const (
-	loglevelTrace Loglevel = iota
-	loglevelDebug
-	loglevelInfo
-	loglevelError
-	loglevelFatal
+	LoglevelTrace Loglevel = iota
+	LoglevelDebug
+	LoglevelInfo
+	LoglevelError
+	LoglevelFatal
 )
 
 func (l *Loglevel) String() string {
 	switch *l {
-	case loglevelFatal:
+	case LoglevelFatal:
 		return "F"
-	case loglevelError:
+	case LoglevelError:
 		return "E"
-	case loglevelInfo:
+	case LoglevelInfo:
 		return "I"
-	case loglevelDebug:
+	case LoglevelDebug:
 		return "D"
-	case loglevelTrace:
+	case LoglevelTrace:
 		return "T"
 	}
 	return " "
@@ -44,23 +44,23 @@ func New(loglevel Loglevel) *LazyLogger {
 }
 
 func NewFatal() *LazyLogger {
-	return New(loglevelFatal)
+	return New(LoglevelFatal)
 }
 
 func NewError() *LazyLogger {
-	return New(loglevelError)
+	return New(LoglevelError)
 }
 
 func NewInfo() *LazyLogger {
-	return New(loglevelInfo)
+	return New(LoglevelInfo)
 }
 
 func NewDebug() *LazyLogger {
-	return New(loglevelDebug)
+	return New(LoglevelDebug)
 }
 
 func NewTrace() *LazyLogger {
-	return New(loglevelTrace)
+	return New(LoglevelTrace)
 }
 
 func (l *LazyLogger) SetLoglevel(loglevel Loglevel) {
@@ -82,93 +82,93 @@ func (l *LazyLogger) Fatalf(format string, v ...interface{}) {
 }
 
 func (l *LazyLogger) Error(v ...interface{}) {
-	if l.loglevel <= loglevelError {
+	if l.loglevel <= LoglevelError {
 		Error(v...)
 	}
 }
 
 func (l *LazyLogger) Errof(format string, v ...interface{}) {
-	if l.loglevel <= loglevelError {
+	if l.loglevel <= LoglevelError {
 		Errof(format, v...)
 	}
 }
 
 func (l *LazyLogger) Info(v ...interface{}) {
-	if l.loglevel <= loglevelInfo {
+	if l.loglevel <= LoglevelInfo {
 		Info(v...)
 	}
 }
 
 func (l *LazyLogger) Infof(format string, v ...interface{}) {
-	if l.loglevel <= loglevelInfo {
+	if l.loglevel <= LoglevelInfo {
 		Infof(format, v...)
 	}
 }
 
 func (l *LazyLogger) Debug(v ...interface{}) {
-	if l.loglevel <= loglevelDebug {
+	if l.loglevel <= LoglevelDebug {
 		Debug(v...)
 	}
 }
 
 func (l *LazyLogger) Debugf(format string, v ...interface{}) {
-	if l.loglevel <= loglevelDebug {
+	if l.loglevel <= LoglevelDebug {
 		Debugf(format, v...)
 	}
 }
 
 func (l *LazyLogger) Trace(v ...interface{}) {
-	if l.loglevel > loglevelTrace {
+	if l.loglevel > LoglevelTrace {
 		Trace(v...)
 	}
 }
 
 func (l *LazyLogger) Tracef(format string, v ...interface{}) {
-	if l.loglevel <= loglevelTrace {
+	if l.loglevel <= LoglevelTrace {
 		Tracef(format, v...)
 	}
 }
 
 func Fatal(v ...interface{}) {
-	writeln(os.Stderr, loglevelFatal, fmt.Sprint(v...))
+	writeln(os.Stderr, LoglevelFatal, fmt.Sprint(v...))
 	os.Exit(1)
 }
 
 func Fatalf(format string, v ...interface{}) {
-	writeln(os.Stderr, loglevelFatal, fmt.Sprintf(format, v...))
+	writeln(os.Stderr, LoglevelFatal, fmt.Sprintf(format, v...))
 	os.Exit(1)
 }
 
 func Error(v ...interface{}) {
-	writeln(os.Stderr, loglevelError, fmt.Sprint(v...))
+	writeln(os.Stderr, LoglevelError, fmt.Sprint(v...))
 }
 
 func Errof(format string, v ...interface{}) {
-	writeln(os.Stderr, loglevelError, fmt.Sprintf(format, v...))
+	writeln(os.Stderr, LoglevelError, fmt.Sprintf(format, v...))
 }
 
 func Info(v ...interface{}) {
-	writeln(os.Stdout, loglevelInfo, fmt.Sprint(v...))
+	writeln(os.Stdout, LoglevelInfo, fmt.Sprint(v...))
 }
 
 func Infof(format string, v ...interface{}) {
-	writeln(os.Stdout, loglevelInfo, fmt.Sprintf(format, v...))
+	writeln(os.Stdout, LoglevelInfo, fmt.Sprintf(format, v...))
 }
 
 func Debug(v ...interface{}) {
-	writeln(os.Stdout, loglevelDebug, fmt.Sprint(v...))
+	writeln(os.Stdout, LoglevelDebug, fmt.Sprint(v...))
 }
 
 func Debugf(format string, v ...interface{}) {
-	writeln(os.Stdout, loglevelDebug, fmt.Sprintf(format, v...))
+	writeln(os.Stdout, LoglevelDebug, fmt.Sprintf(format, v...))
 }
 
 func Trace(v ...interface{}) {
-	writeln(os.Stdout, loglevelTrace, fmt.Sprint(v...))
+	writeln(os.Stdout, LoglevelTrace, fmt.Sprint(v...))
 }
 
 func Tracef(format string, v ...interface{}) {
-	writeln(os.Stdout, loglevelTrace, fmt.Sprintf(format, v...))
+	writeln(os.Stdout, LoglevelTrace, fmt.Sprintf(format, v...))
 }
 
 func writeln(w io.Writer, loglevel Loglevel, message string) {
