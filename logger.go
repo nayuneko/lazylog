@@ -118,7 +118,7 @@ func (l *LazyLogger) Debugf(format string, v ...interface{}) {
 }
 
 func (l *LazyLogger) Trace(v ...interface{}) {
-	if l.loglevel > LoglevelTrace {
+	if l.loglevel <= LoglevelTrace {
 		Trace(v...)
 	}
 }
