@@ -87,9 +87,9 @@ func (l *LazyLogger) Error(v ...interface{}) {
 	}
 }
 
-func (l *LazyLogger) Errof(format string, v ...interface{}) {
+func (l *LazyLogger) Errorf(format string, v ...interface{}) {
 	if l.loglevel <= LoglevelError {
-		Errof(format, v...)
+		Errorf(format, v...)
 	}
 }
 
@@ -143,7 +143,7 @@ func Error(v ...interface{}) {
 	writeln(os.Stderr, LoglevelError, fmt.Sprint(v...))
 }
 
-func Errof(format string, v ...interface{}) {
+func Errorf(format string, v ...interface{}) {
 	writeln(os.Stderr, LoglevelError, fmt.Sprintf(format, v...))
 }
 
